@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Poloha bodu</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .inside { color: green; }
+        .outside { color: red; }
+    </style>
+</head>
+<body>
+    <h1>Poloha bodu</h1>
+    <form id="pointForm">
+        <label for="x">X souřadnice:</label>
+        <input type="number" id="x" name="x" required>
+        <br>
+        <label for="y">Y souřadnice:</label>
+        <input type="number" id="y" name="y" required>
+        <br>
+        <button type="submit">Ověřit</button>
+    </form>
+    <p id="result"></p>
+
+    <script src="script.js"></script>
+</body>
+</html>
+script.js
+javascript
+Zkopírovat kód
+document.getElementById('pointForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+    
+    const x = parseFloat(document.getElementById('x').value);
+    const y = parseFloat(document.getElementById('y').value);
+    const result = document.getElementById('result');
+
+    if (Math.abs(x) <= 25 && Math.abs(y) <= 25) {
+        result.textContent = 'Bod leží uvnitř čtverce nebo na jeho hranici.';
+        result.className = 'inside';
+    } else {
+        result.textContent = 'Bod leží mimo čtverec.';
+        result.className = 'outside';
+    }
+});
